@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './chip.png';
 import './App.css';
 import HTMLCodes from './components/HTMLCodes/HTMLCodes';
 

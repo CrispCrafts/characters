@@ -133,6 +133,8 @@ export default function keyCodes(e) {
                 e = e.toLowerCase();
                 key = Object.keys(keys).filter((k) => keys[k] === e)[0];
                 break;
+            default:
+                throw Error('Invalid item passed in to keyCodes:', e);
         }
     }
 
