@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import './HTMLCodes.css';
+import keycodes from './keycodes';
+import Key from '../Key/Key';
 
 class HTMLCodes extends Component {
     
@@ -26,16 +29,12 @@ class HTMLCodes extends Component {
 
     handleKeyPress(e) {
         e.preventDefault();
-        console.log(e.keyCode);
-        console.log(e.shiftKey);
+        if(e.which === this.state.which) {
+            return;
+        }
         this.setState({
-            started: true,
-            which: e.which,
-            keyCode: e.keyCode,
-            shiftKey: e.shiftKey.toString(),
-            altKey: e.altKey.toString(),
-            ctrlKey: e.ctrlKey.toString(),
-            metaKey: e.metaKey.toString()
+            ...keycodes(e),
+            started: true
         });
     }
     
@@ -46,7 +45,9 @@ class HTMLCodes extends Component {
             );
         }
         return (
-            <div>
+            <div className="htmlCodes-container">
+                <Key info={{ name: this.state.key, keyCode: this.state.which }}/>
+                <div>key: {this.state.key}</div>
                 <div>which: {this.state.which}</div>
                 <div>keyCode: {this.state.keyCode}</div>
                 <div>shiftKey: {this.state.shiftKey}</div>
