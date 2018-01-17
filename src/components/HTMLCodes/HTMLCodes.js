@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import './HTMLCodes.css';
+import keyCodes from './keycodes';
+import Key from '../Key/Key';
 
 class HTMLCodes extends Component {
     
@@ -26,33 +29,38 @@ class HTMLCodes extends Component {
 
     handleKeyPress(e) {
         e.preventDefault();
-        console.log(e.keyCode);
-        console.log(e.shiftKey);
-        this.setState({
-            started: true,
-            which: e.which,
-            keyCode: e.keyCode,
-            shiftKey: e.shiftKey.toString(),
-            altKey: e.altKey.toString(),
-            ctrlKey: e.ctrlKey.toString(),
-            metaKey: e.metaKey.toString()
-        });
+        if(e.which !== this.state.which ||
+            e.keyCode !== this.state.keyCode ||
+            e.shiftKey !== this.state.shiftKey ||
+            e.altKey !== this.state.altKey ||
+            e.ctrlKey !== this.state.ctrlKey ||
+            e.metaKey !== this.state.metaKey
+        ) {
+            this.setState({
+                ...keyCodes(e),
+                started: true
+            });
+        }
     }
     
     render() {
         if(!this.state.started) {
             return (
-                <div>Press any Key</div>
+                <div style={{color: 'white', fontSize: '20px'}}>Press any Key</div>
             );
         }
         return (
-            <div>
-                <div>which: {this.state.which}</div>
-                <div>keyCode: {this.state.keyCode}</div>
-                <div>shiftKey: {this.state.shiftKey}</div>
-                <div>altKey: {this.state.altKey}</div>
-                <div>ctrlKey: {this.state.ctrlKey}</div>
-                <div>metaKey: {this.state.metaKey}</div>
+            <div className="htmlCodes-container">
+                <Key
+                    info={{
+                        name: this.state.key,
+                        keyCode: this.state.which,
+                        shiftKey: this.state.shiftKey,
+                        altKey: this.state.altKey,
+                        ctrlKey: this.state.ctrlKey,
+                        metaKey: this.state.metaKey
+                    }}
+                />
             </div>
         );
     }
