@@ -29,12 +29,19 @@ class Key extends Component {
         return keysPressed.map((k, indx, keys) => {
             let keyComp;
             let keyCode = keyCodes(k);
+            console.log(keyCode);
             keyComp = keyCode.icon ? <i className={keyCode.icon.class}>{keyCode.icon.name}</i> : keyCode.key;
             if(indx < keys.length - 1) {
                 return (
                     <div key={`${k}`} className="key-combo">
-                        <div className="key-container">
-                            <div className="key-title">{keyComp}</div>
+                        <div className="key">
+                            <div className="key-container">
+                                <div className="key-title">{keyComp}</div>
+                            </div>
+                            <div className="key-info">
+                                <div>code:</div>
+                                <div className="keyCode">{k}</div>
+                            </div>
                         </div>
                         <div className="combo">
                             <i className="material-icons">add</i>
@@ -43,8 +50,14 @@ class Key extends Component {
                 );
             }
             return (
-                <div key={`${k}`} className="key-container">
-                    <div className="key-title">{keyComp}</div>
+                <div key={`${k}`} className="key">
+                    <div className="key-container">
+                        <div className="key-title">{keyComp}</div>
+                    </div>
+                    <div className="key-info">
+                        <div>code:</div>
+                        <div className="keyCode">{k}</div>
+                    </div>
                 </div>
             );
         });
