@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './HTMLCodes.css';
-import keycodes from './keycodes';
+import keyCodes from './keycodes';
 import Key from '../Key/Key';
 
 class HTMLCodes extends Component {
@@ -29,13 +29,18 @@ class HTMLCodes extends Component {
 
     handleKeyPress(e) {
         e.preventDefault();
-        if(e.which === this.state.which) {
-            return;
+        if(e.which !== this.state.which ||
+            e.keyCode !== this.state.keyCode ||
+            e.shiftKey !== this.state.shiftKey ||
+            e.altKey !== this.state.altKey ||
+            e.ctrlKey !== this.state.ctrlKey ||
+            e.metaKey !== this.state.metaKey
+        ) {
+            this.setState({
+                ...keyCodes(e),
+                started: true
+            });
         }
-        this.setState({
-            ...keycodes(e),
-            started: true
-        });
     }
     
     render() {
@@ -46,14 +51,16 @@ class HTMLCodes extends Component {
         }
         return (
             <div className="htmlCodes-container">
-                <Key info={{ name: this.state.key, keyCode: this.state.which }}/>
-                <div>key: {this.state.key}</div>
-                <div>which: {this.state.which}</div>
-                <div>keyCode: {this.state.keyCode}</div>
-                <div>shiftKey: {this.state.shiftKey}</div>
-                <div>altKey: {this.state.altKey}</div>
-                <div>ctrlKey: {this.state.ctrlKey}</div>
-                <div>metaKey: {this.state.metaKey}</div>
+                <Key
+                    info={{
+                        name: this.state.key,
+                        keyCode: this.state.which,
+                        shiftKey: this.state.shiftKey,
+                        altKey: this.state.altKey,
+                        ctrlKey: this.state.ctrlKey,
+                        metaKey: this.state.metaKey
+                    }}
+                />
             </div>
         );
     }
