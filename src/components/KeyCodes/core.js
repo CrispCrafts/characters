@@ -1,6 +1,7 @@
 let keys = {
     8: 'backspace',
     9: 'tab',
+    12: 'clear',
     13: 'enter',
     16: 'shift',
     17: 'ctrl',
@@ -54,11 +55,18 @@ let icons = {
         class: 'material-icons',
         name: 'arrow_upward',
     },
-    39: 'arrow_forward',
-    40: 'arrow_downward',
+    39: {
+        class: 'material-icons',
+        name: 'arrow_forward'
+    },
+    40: {
+        class: 'material-icons',
+        name: 'arrow_downward'
+    }
 };
 
 const mac = {
+    13: 'return',
     16: 'Shift ⇧',
     17: 'Control ⌃',
     18: 'Option ⌥',
@@ -66,7 +74,6 @@ const mac = {
     20: 'Caps Lock ⇪',
     91: 'Command ⌘',
     93: 'Command ⌘',
-    13: 'return'
 };
 
 const windows = {
@@ -97,8 +104,8 @@ for(i = 65; i < 91; i++) {
     keys[i] = String.fromCharCode(i+32);
 }
 
-// function keys
-for (i = 112; i < 124; i++) {
+// function keys f1-f19
+for (i = 112; i < 131; i++) {
     keys[i] = `f${i - 111}`;
 }
 

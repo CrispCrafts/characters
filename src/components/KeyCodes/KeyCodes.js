@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import './HTMLCodes.css';
-import keyCodes from './keycodes';
+import './KeyCodes.css';
+import keyCodes from './core';
 import Key from '../Key/Key';
 
-class HTMLCodes extends Component {
+class KeyCodes extends Component {
     
     constructor(props) {
         super(props);
@@ -66,4 +66,4 @@ class HTMLCodes extends Component {
     }
 }
 
-export default HTMLCodes;
+export default KeyCodes;
