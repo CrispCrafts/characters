@@ -1,0 +1,14 @@
+.ascii-code {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ascii-code .character {
+    flex: 1;
+}
+
+.ascii-code .code {
+    flex: 1;
+}

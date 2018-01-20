@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './AppPage.css';
 
 class AppPage extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class AppPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="pageContainer">
         {this.props.children}
       </div>
     );

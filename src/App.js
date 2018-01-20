@@ -35,7 +35,7 @@ class App extends Component {
             title={<span>Key<br/>Codes</span>} />
           <Item
             value={1}
-            icon="font_download"
+            icon="text_format"
             title="ASCII" />
         </AppSidebar>
         <AppPageContainer value={this.state.currentPage}>

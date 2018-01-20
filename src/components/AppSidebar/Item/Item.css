@@ -4,10 +4,13 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    padding: 20px 0;
+    height: 50px;
+    width: 40px;
     text-align: center;
+    margin: 8px 0px;
 }
 
 .item-title {
     padding-top: 8px;
+    display: none;
 }

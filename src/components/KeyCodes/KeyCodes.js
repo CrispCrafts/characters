@@ -46,7 +46,7 @@ class KeyCodes extends Component {
     render() {
         if(!this.state.started) {
             return (
-                <div style={{color: 'white', fontSize: '20px'}}>Press any Key</div>
+                <div className="htmlCodes-container" style={{color: 'white', fontSize: '20px'}}>Press any Key</div>
             );
         }
         return (
