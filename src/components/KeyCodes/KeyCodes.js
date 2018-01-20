@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import cool from 'cool-ascii-faces';
 import './KeyCodes.css';
 import keyCodes from './core';
 import Key from '../Key/Key';
@@ -46,7 +47,12 @@ class KeyCodes extends Component {
     render() {
         if(!this.state.started) {
             return (
-                <div className="htmlCodes-container" style={{color: 'white', fontSize: '20px'}}>Press any Key</div>
+                <div className="htmlCodes-container" style={{color: 'white', fontSize: '20px'}}>
+                    <div>{cool()}</div>
+                    <br/>
+                    <div>Key Codes</div>
+                    <span style={{color: 'rgba(255,255,255,0.5)'}}>Press any Key</span>
+                </div>
             );
         }
         return (

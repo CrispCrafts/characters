@@ -1,14 +1,23 @@
 .ascii-code {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 24px;
+    cursor: pointer;
 }
 
 .ascii-code .character {
     flex: 1;
+    font-size: 24px;
+    color: black;
 }
 
-.ascii-code .code {
+.ascii-code:hover > .character,
+.ascii-code:hover > .info {
+    color: white;
+}
+
+.ascii-code .info {
     flex: 1;
 }

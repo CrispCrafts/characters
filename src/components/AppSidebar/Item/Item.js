@@ -2,6 +2,26 @@ import React, { Component } from 'react';
 import './Item.css';
 
 class Item extends Component {
+    constructor(props) {
+        super(props);
+        this.generateIcons = this.generateIcons.bind(this);
+    }
+
+    generateIcons() {
+        if(this.props.icons.length > 0) {
+            return this.props.icons.map((icon, indx) => {
+                return (
+                    <i key={`${indx}${icon}`} className="material-icons">{icon}</i>
+                );
+            })
+        }
+        return (
+            <i className="material-icons">{this.props.icon}</i>
+        );
+    }
+    
+
+
     render() {
         var selectedStyle = {
             color: this.props.selected ? '#fff' : 'rgba(255,255,255,0.5)',
@@ -11,7 +31,9 @@ class Item extends Component {
             <div className="item" style={selectedStyle} onClick={() => {
                 this.props.onSelect(this.props.value);
             }}>
-                <i className="material-icons">{this.props.icon}</i>
+                <div className="icon-container">
+                    {this.generateIcons()}
+                </div>
                 <div className="item-title">{this.props.title}</div>
             </div>
         );
@@ -23,6 +45,7 @@ Item.defaultProps = {
     icon: 'keyboard',
     title: 'hello_world',
     showTitle: true,
+    icons: []
 };
 
 export default Item;

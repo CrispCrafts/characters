@@ -40,7 +40,7 @@ class SearchBar extends Component {
   handleKeys (e) {
     var keyCode = e.keyCode || e.which;
 
-    if (keyCode == 9) {
+    if (keyCode === 9) {
         e.preventDefault();
         var start = this.search.selectionStart;
         var end = this.search.selectionEnd;
@@ -92,11 +92,11 @@ class SearchBar extends Component {
 
     return (
       <div className={searchBarClass} style={containerStyle}>
-        <i className={iconClass}>search</i>
+        <i className={iconClass}>{this.props.leftIconName || 'search'}</i>
         <input
           style={inputStyle}
           ref={(e) => {this.search = e;}}
-          placeholder="Ascii Codes"
+          placeholder={this.props.placeholder}
           value={this.props.value}
           spellCheck={this.props.spellCheck}
           onFocus={() => {this.handleFocus(true);}}

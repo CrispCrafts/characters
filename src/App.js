@@ -8,6 +8,7 @@ import Item from './components/AppSidebar/Item/Item';
 import AsciiCodes from './components/AsciiCodes/AsciiCodes';
 import AppPageContainer from './components/AppPageContainer/AppPageContainer';
 import AppPage from './components/AppPage/AppPage';
+import AsciiArt from './components/AsciiArt/AsciiArt';
 
 class App extends Component {
 
@@ -37,6 +38,10 @@ class App extends Component {
             value={1}
             icon="text_format"
             title="ASCII" />
+          <Item
+            value={2}
+            icons={['format_size', 'forward', 'font_download']}
+            title="ASCII" />
         </AppSidebar>
         <AppPageContainer value={this.state.currentPage}>
           <AppPage value={0}>
@@ -44,6 +49,9 @@ class App extends Component {
           </AppPage>
           <AppPage value={1}>
             <AsciiCodes></AsciiCodes>
+          </AppPage>
+          <AppPage value={2}>
+            <AsciiArt></AsciiArt>
           </AppPage>
         </AppPageContainer>
         <AppFooter />

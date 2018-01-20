@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import he from 'he';
+import cool from 'cool-ascii-faces';
 import './AsciiCode.css';
+import { names } from "./core";
 
 class AsciiCode extends Component {
     
@@ -10,13 +13,27 @@ class AsciiCode extends Component {
 
     generateCode() {
         var character = this.props.character;
-        var code = this.props.character.charCodeAt(0);
+        var code = character.charCodeAt(0);
+        var htmlEntity = he.encode(character, {'encodeEverything': true, 'decimal': false});
+        var htmlName = he.encode(character, {'encodeEverything': true, 'useNamedReferences': true, 'decimal': true});
+        if(character === '&#0;') {
+            code = 0;
+            htmlEntity = character;
+            htmlName = character;
+        }
+        if(code < 32 && code >= 0) {
+            character= names[code]
+        } 
+        
         switch(code) {
             case 32:
-                character = <i className="material-icons">space_bar</i>
+                character = '\\s';//<i className="material-icons">space_bar</i>
+                break;
+            case 10:
+                character = '\\n';
                 break;
             case 9:
-                character = <i className="material-icons">keyboard_tab</i>;
+                character = '\\t';
                 break;
             default:
                 break;
@@ -26,17 +43,26 @@ class AsciiCode extends Component {
                 <div className="character">
                     {character}
                 </div>
-                <div className="code">
-                    {code}
+                <div className="info">
+                    <div>&#38;&#35;{code}&#59;</div>
+                    <div>{htmlEntity}</div>
+                    <div>{htmlName}</div>
                 </div>
             </div>
         );
     }
 
     render() {
-        if(!this.props.character) {
+        if(!this.props.character && !this.props.forceCode) {
             return (
-                <div>Type any character</div>
+                <div className="ascii-code">
+                    <div className="character">
+                        {cool()}
+                    </div>
+                    <div className="info">
+                        {'no character'}
+                    </div>
+                </div>
             )
         }
         return this.generateCode();
