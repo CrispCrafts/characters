@@ -90,9 +90,22 @@ class SearchBar extends Component {
       boxShadow: this.state.isFocused ? '0 1px 1px rgba(0,0,0,0.24)' : '',
     };
 
-    return (
-      <div className={searchBarClass} style={containerStyle}>
-        <i className={iconClass}>{this.props.leftIconName || 'search'}</i>
+    var inpt;
+    if(this.props.useTextArea) {
+      inpt = (
+        <textarea
+          rows="1"
+          style={inputStyle}
+          ref={(e) => {this.search = e;}}
+          placeholder={this.props.placeholder}
+          value={this.props.value}
+          spellCheck={this.props.spellCheck}
+          onFocus={() => {this.handleFocus(true);}}
+          onBlur={() => {this.handleFocus(false);}}
+          onChange={this.updateText}/>
+      );
+    } else {
+      inpt = (
         <input
           style={inputStyle}
           ref={(e) => {this.search = e;}}
@@ -103,6 +116,13 @@ class SearchBar extends Component {
           onBlur={() => {this.handleFocus(false);}}
           onChange={this.updateText}
         />
+      );
+    }
+
+    return (
+      <div className={searchBarClass} style={containerStyle}>
+        <i className={iconClass}>{this.props.leftIconName || 'search'}</i>
+        {inpt}
         <div
           onClick={()=>{
             this.cancelSearch();

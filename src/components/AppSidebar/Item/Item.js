@@ -24,8 +24,10 @@ class Item extends Component {
 
     render() {
         var selectedStyle = {
+            transition: 'all ease-in 200ms',
             color: this.props.selected ? '#fff' : 'rgba(255,255,255,0.5)',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            transform: this.props.selected ? 'scale(1.3)' : ''
         };
         return (
             <div className="item" style={selectedStyle} onClick={() => {
