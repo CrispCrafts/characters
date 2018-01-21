@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './AsciiArt.css';
 import SearchBar from '../SearchBar/SearchBar';
-
+import figlet from 'figlet';
 
 class AsciiArt extends Component {
   constructor(props) {
     super(props);
     this.state = {
         query: '',
+        result: null,
     };
     this.handleAsciiChange = this.handleAsciiChange.bind(this);
   }
@@ -16,6 +17,21 @@ class AsciiArt extends Component {
     this.setState({
         query: str
     });
+  }
+
+  componentDidMount() {
+    figlet.text('Hello World!', {
+        font: 'Ghost',
+        horizontalLayout: 'default',
+        verticalLayout: 'default'
+    }, (err, data) => {
+        console.log(data);
+        this.setState({
+            result: data
+        });
+    });
+
+    console.log(figlet);
   }
 
   render() {
@@ -39,8 +55,7 @@ class AsciiArt extends Component {
             />
         </div>
         <div className="grid-container">
-            <div className="ascii-grid">
-            </div>
+            {this.state.result}
         </div>
       </div>
     );
