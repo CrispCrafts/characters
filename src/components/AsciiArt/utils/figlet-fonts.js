@@ -1,3 +1,27 @@
+export const defaultSizes = [
+    8,
+    9,
+    10,
+    12,
+    14,
+    18,
+    24,
+    30,
+    36,
+    48,
+    60,
+    72,
+    96
+];
+
+export const layoutOptions = [
+    'Default',
+    'Full',
+    'Fitted',
+    'Controlled Smushing',
+    'Universal Smushing'
+];
+
 export default [
     '1Row',
     '3-D',
@@ -46,7 +70,7 @@ export default [
     'Binary',
     'Block',
     'Blocks',
-    'Bloody*',
+    'Bloody',
     'Bolger',
     'Braced',
     'Bright',

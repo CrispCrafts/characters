@@ -1,4 +1,5 @@
 .fig-container {
+    text-align: left;
     padding-top: 64px;
     background: rgb(184, 46, 44);
     height: calc(100vh - 154px);
@@ -8,8 +9,10 @@
 .font-options {
     display: flex;
     flex-direction: row;
-    padding: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .font-option {

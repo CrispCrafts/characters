@@ -5,6 +5,7 @@ import figlet from 'figlet';
 import Figlet from './Figlet';
 import FontOptions from './FontOptions';
 import asyncFiglet from './utils/async-figlet';
+import fonts from './utils/figlet-fonts';
 
 class AsciiArt extends Component {
   constructor(props) {
@@ -12,32 +13,65 @@ class AsciiArt extends Component {
     this.state = {
         textValue: '',
         figletText: '',
-        font: 'Bloody',
-        horizontalLayout: 'default',
-        verticalLayout: 'default',
+        font: 0,
+        hLayout: 'default',
+        vLayout: 'default',
         fontSize: 18,
         fontColor: '#000',
         backgroundColor: null,
-        editorFocused: false
+        editorFocused: false,
+        boldFont: false
     };
+    this.handleOptionChange = this.handleOptionChange.bind(this);
     this.handleFigletTextChange = this.handleFigletTextChange.bind(this);
   }
 
   handleFigletTextChange(str) {
     this.setState({
         textValue: str
+    }, () => {    
+        this.updateFiglet(this.state.textValue);
     });
-    this.updateFiglet(str);
+  }
+
+  handleOptionChange({type, value}) {
+      switch(type) {
+        case 'FONT':
+            this.setState({
+                font: value,
+            }, () => {
+                this.updateFiglet(this.state.textValue);
+            });
+            break;
+        case 'SIZE':
+            this.setState({
+                fontSize: value,
+            });
+            break;
+        case 'HLAYOUT':
+            this.setState({
+                hLayout: value
+            }, () => {
+                this.updateFiglet(this.state.textValue);
+            });
+            break;
+        case 'VLAYOUT':
+            this.setState({
+                vLayout: value
+            }, ()=> {
+                this.updateFiglet(this.state.textValue);
+            });
+            break;
+      }
   }
 
   updateFiglet(str) {
-      console.log(str);
       const options = {
-        font: this.state.font,
-        horizontalLayout: this.state.horizontalLayout,
-        verticalLayout: this.state.verticalLayout
+        font: fonts[this.state.font],
+        horizontalLayout: this.state.hLayout,
+        verticalLayout: this.state.vLayout
       };
-      console.log(options);
+
       asyncFiglet(str, options)
         .then(asciiText => {
             this.setState({
@@ -53,6 +87,7 @@ class AsciiArt extends Component {
       <div className="ascii-container" ref={(d) => { this.scrollContainer = d; }}>
         <div className="input-section"
             style={{
+                zIndex: 10,
                 boxShadow: '0 1px 0px 1px rgba(0, 0, 0, 0.2)'
             }}>
             <SearchBar
@@ -71,15 +106,22 @@ class AsciiArt extends Component {
             />
         </div>
         <div className="fig-container" style={{
-            height: `calc(100vh - ${ 154}px)`,
+            height: `calc(100vh - 154px)`,
             paddingTop: `${this.state.editorFocused ? 184 : 64}px`
         }}>
-            <FontOptions />
-            <Figlet 
+            <FontOptions
+                font={this.state.font}
+                fontSize={this.state.fontSize}
+                hLayout={this.state.hLayout}
+                vLayout={this.state.vLayout}
+                onOptionChange={this.handleOptionChange}
+            />
+            <Figlet
                 figletText={this.state.figletText}
                 backgroundColor={this.state.backgroundColor}
                 fontSize={this.state.fontSize}
                 fontColor={this.state.fontColor}
+                boldFont={this.state.boldFont}
             />
         </div>
       </div>

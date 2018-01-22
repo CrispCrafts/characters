@@ -57,6 +57,7 @@ class AsciiCodes extends Component {
       <div className="ascii-container" ref={(d) => { this.scrollContainer = d; }}>
         <div className="input-section"
             style={{
+                zIndex: 10,
                 boxShadow: '0 1px 0px 1px rgba(0, 0, 0, 0.2)'
             }}>
             <SearchBar

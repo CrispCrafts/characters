@@ -18,7 +18,7 @@ export default class Figlet extends Component {
                     margin: '0px',
                     width: 'fit-content'
                 }}>
-                    <code style={{ fontSize: `${this.props.fontSize}px` }}>{figletText}</code>
+                    <code style={{ fontSize: `${this.props.fontSize}px`, fontWeight: this.props.boldFont ? 'bold' : 'normal' }}>{figletText}</code>
                 </pre>
             </div>
         );
