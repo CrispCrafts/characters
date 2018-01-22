@@ -13,7 +13,11 @@ export default class Figlet extends Component {
         const { figletText } = this.props;
         return (
             <div>
-                <pre style={{padding: '24px'}}>
+                <pre style={{
+                    padding: '24px',
+                    margin: '0px',
+                    width: 'fit-content'
+                }}>
                     <code style={{ fontSize: `${this.props.fontSize}px` }}>{figletText}</code>
                 </pre>
             </div>

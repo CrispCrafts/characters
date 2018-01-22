@@ -3,6 +3,7 @@ import './AsciiArt.css';
 import SearchBar from '../SearchBar/SearchBar';
 import figlet from 'figlet';
 import Figlet from './Figlet';
+import FontOptions from './FontOptions';
 import asyncFiglet from './utils/async-figlet';
 
 class AsciiArt extends Component {
@@ -47,9 +48,6 @@ class AsciiArt extends Component {
         });
   }
 
-  componentDidMount() {
-  }
-
   render() {
     return (
       <div className="ascii-container" ref={(d) => { this.scrollContainer = d; }}>
@@ -76,6 +74,7 @@ class AsciiArt extends Component {
             height: `calc(100vh - ${ 154}px)`,
             paddingTop: `${this.state.editorFocused ? 184 : 64}px`
         }}>
+            <FontOptions />
             <Figlet 
                 figletText={this.state.figletText}
                 backgroundColor={this.state.backgroundColor}
