@@ -24,16 +24,35 @@ class AsciiCode extends Component {
         if(code < 32 && code >= 0) {
             character= names[code]
         } 
-        
+        const escapeStyle = {
+            fontWeight: 'bold',
+            color: '#FFEB3B',
+            textShadow: '0px 2px 0px #FF6D00'
+        }
         switch(code) {
             case 32:
-                character = '\\s';//<i className="material-icons">space_bar</i>
+                character = <span><span style={escapeStyle}>{`\\`}</span>s</span>;//<i className="material-icons">space_bar</i>
+                break;
+            case 13:
+                character = <span><span style={escapeStyle}>{`\\`}</span>r</span>;
+                break;
+            case 12:
+                character = <span><span style={escapeStyle}>{`\\`}</span>f</span>;
+                break;
+            case 11:
+                character = <span><span style={escapeStyle}>{`\\`}</span>v</span>;
                 break;
             case 10:
-                character = '\\n';
+                character = <span><span style={escapeStyle}>{`\\`}</span>n</span>;
                 break;
             case 9:
-                character = '\\t';
+                character = <span><span style={escapeStyle}>{`\\`}</span>t</span>;
+                break;
+            case 8:
+                character = <span><span style={escapeStyle}>{`\\`}</span>b</span>;
+                break;
+            case 7:
+                character = <span><span style={escapeStyle}>{`\\`}</span>a</span>;
                 break;
             default:
                 break;
