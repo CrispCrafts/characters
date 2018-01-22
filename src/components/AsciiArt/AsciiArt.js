@@ -2,43 +2,55 @@ import React, { Component } from 'react';
 import './AsciiArt.css';
 import SearchBar from '../SearchBar/SearchBar';
 import figlet from 'figlet';
+import Figlet from './Figlet';
+import asyncFiglet from './utils/async-figlet';
 
 class AsciiArt extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        query: '',
-        result: null,
+        textValue: '',
+        figletText: '',
+        font: 'Bloody',
+        horizontalLayout: 'default',
+        verticalLayout: 'default',
+        fontSize: 18,
+        fontColor: '#000',
+        backgroundColor: null,
+        editorFocused: false
     };
-    this.handleAsciiChange = this.handleAsciiChange.bind(this);
+    this.handleFigletTextChange = this.handleFigletTextChange.bind(this);
   }
 
-  handleAsciiChange(str) {
+  handleFigletTextChange(str) {
     this.setState({
-        query: str
+        textValue: str
     });
+    this.updateFiglet(str);
+  }
+
+  updateFiglet(str) {
+      console.log(str);
+      const options = {
+        font: this.state.font,
+        horizontalLayout: this.state.horizontalLayout,
+        verticalLayout: this.state.verticalLayout
+      };
+      console.log(options);
+      asyncFiglet(str, options)
+        .then(asciiText => {
+            this.setState({
+                figletText: asciiText
+            });
+        }).catch(err => {
+            console.log(err);
+        });
   }
 
   componentDidMount() {
-    figlet.text('Hello World!', {
-        font: 'Ghost',
-        horizontalLayout: 'default',
-        verticalLayout: 'default'
-    }, (err, data) => {
-        console.log(data);
-        this.setState({
-            result: data
-        });
-    });
-
-    console.log(figlet);
   }
 
   render() {
-    var showShadow = (this.scrollContainer && this.scrollContainer.scrollTop > 0);
-    if(this.scrollContainer) {
-        console.log(this.scrollContainer.scrollTop);
-    }
     return (
       <div className="ascii-container" ref={(d) => { this.scrollContainer = d; }}>
         <div className="input-section"
@@ -50,12 +62,26 @@ class AsciiArt extends Component {
                 leftIconName="format_size"
                 placeholder="Text to Ascii Art"
                 spellCheck="false"
-                value={this.state.query}
-                onChange={this.handleAsciiChange}
+                value={this.state.textValue}
+                onChange={this.handleFigletTextChange}
+                onFocus={(focused) => {
+                    console.log(focused);
+                    this.setState({
+                        editorFocused: focused
+                    });
+                }}
             />
         </div>
-        <div className="grid-container">
-            {this.state.result}
+        <div className="fig-container" style={{
+            height: `calc(100vh - ${ 154}px)`,
+            paddingTop: `${this.state.editorFocused ? 184 : 64}px`
+        }}>
+            <Figlet 
+                figletText={this.state.figletText}
+                backgroundColor={this.state.backgroundColor}
+                fontSize={this.state.fontSize}
+                fontColor={this.state.fontColor}
+            />
         </div>
       </div>
     );

@@ -40,7 +40,8 @@ class App extends Component {
             title="ASCII" />
           <Item
             value={2}
-            icons={['format_size', 'forward', 'font_download']}
+            icon="format_size"
+            //icons={['format_size', 'forward', 'font_download']}
             title="ASCII" />
         </AppSidebar>
         <AppPageContainer value={this.state.currentPage}>

@@ -5,7 +5,7 @@
 }
 
 .grid-container {
-    padding-top: 63px;
+    padding-top: 64px;
     background: rgb(184, 46, 44);
     height: calc(100vh - 154px);
     overflow: auto;

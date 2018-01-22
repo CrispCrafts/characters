@@ -23,8 +23,12 @@ class SearchBar extends Component {
 
     if (this.props.onFocus && val) {
       this.search.select();
-      this.props.onFocus();
+      this.props.onFocus(true);
       return;
+    }
+
+    if(this.props.onFocus && !val) {
+      this.props.onFocus(false);
     }
 
     if (!this.state.value && !val) {
