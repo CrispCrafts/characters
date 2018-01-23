@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SelectField from 'material-ui/SelectField';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import MenuItem from 'material-ui/MenuItem';
-import { ChromePicker } from 'react-color';
+import ColorField from '../ColorPicker/ColorField';
 import './AsciiArt';
 import fonts, {defaultSizes, layoutOptions} from './utils/figlet-fonts';
 
@@ -100,33 +100,26 @@ export default class FontOptions extends Component {
                         {this.generateDropDown('VLAYOUT')}
                     </SelectField>
                 </div>
-                <div className="font-option">Font Color</div>
                 <div className="font-option">
-                    <div onClick={(event) => {
-                        event.preventDefault();
-                        this.setState({
-                            anchorElement: event.currentTarget,
-                        }, () => {
-                            this.setState({
-                                openBackgroundColor: true,
-                            });
-                        });
-                    }}>
-                        Background Color
-                    </div>
-                </div>
-                    <Popover
-                        animation={PopoverAnimationVertical}
-                        anchorEl={this.state.anchorElement}
-                        open={this.state.openBackgroundColor}
-                        onRequestClose={() => {
-                            this.setState({
-                                openBackgroundColor: false,
-                            });
+                    <i className="material-icons" style={{color: this.props.fontColor}}>brightness_1</i>
+                    <ColorField
+                        floatingLabelText="Font Color"
+                        value={this.props.fontColor}
+                        onChange={(newVal) => {
+                            this.handleOptionChange('FCOLOR', newVal);
                         }}
-                    >
-                        <ChromePicker />
-                    </Popover>
+                    />
+                </div>
+                <div className="font-option">
+                    <i className="material-icons" style={{color: this.props.backgroundColor}}>brightness_1</i>
+                    <ColorField
+                        floatingLabelText="Background Color"
+                        value={this.props.backgroundColor}
+                        onChange={(newVal) => {
+                            this.handleOptionChange('BCOLOR', newVal);
+                        }}
+                    />
+                </div>
             </div>
         );
     }

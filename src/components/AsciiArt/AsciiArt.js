@@ -17,8 +17,8 @@ class AsciiArt extends Component {
         hLayout: 'default',
         vLayout: 'default',
         fontSize: 18,
-        fontColor: '#000',
-        backgroundColor: null,
+        fontColor: '#e61f1f',
+        backgroundColor: '#fbfbfb',
         editorFocused: false,
         boldFont: false
     };
@@ -60,6 +60,16 @@ class AsciiArt extends Component {
                 vLayout: value
             }, ()=> {
                 this.updateFiglet(this.state.textValue);
+            });
+            break;
+        case 'FCOLOR':
+            this.setState({
+                fontColor: value
+            });
+            break;
+        case 'BCOLOR':
+            this.setState({
+                backgroundColor: value
             });
             break;
       }
@@ -106,20 +116,23 @@ class AsciiArt extends Component {
         </div>
         <div className="fig-container" style={{
             height: `calc(100vh - 154px)`,
-            display: 'flex',
+            display: this.state.figletText.trim() ? '' : 'flex',
             flexDirection: 'column',
+            backgroundColor: this.state.backgroundColor,
             paddingTop: `${this.state.editorFocused ? 184 : 64}px`
         }}>
             <FontOptions
                 font={this.state.font}
                 fontSize={this.state.fontSize}
+                fontColor={this.state.fontColor}
+                backgroundColor={this.state.backgroundColor}
                 hLayout={this.state.hLayout}
                 vLayout={this.state.vLayout}
                 onOptionChange={this.handleOptionChange}
             />
             <Figlet
                 figletText={this.state.figletText}
-                backgroundColor={this.state.backgroundColor}
+                //backgroundColor={this.state.backgroundColor}
                 fontSize={this.state.fontSize}
                 fontColor={this.state.fontColor}
                 boldFont={this.state.boldFont}
