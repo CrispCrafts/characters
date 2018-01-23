@@ -98,7 +98,6 @@ class AsciiArt extends Component {
                 value={this.state.textValue}
                 onChange={this.handleFigletTextChange}
                 onFocus={(focused) => {
-                    console.log(focused);
                     this.setState({
                         editorFocused: focused
                     });
@@ -107,6 +106,8 @@ class AsciiArt extends Component {
         </div>
         <div className="fig-container" style={{
             height: `calc(100vh - 154px)`,
+            display: 'flex',
+            flexDirection: 'column',
             paddingTop: `${this.state.editorFocused ? 184 : 64}px`
         }}>
             <FontOptions

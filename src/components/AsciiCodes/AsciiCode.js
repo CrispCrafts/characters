@@ -27,7 +27,7 @@ class AsciiCode extends Component {
         const escapeStyle = {
             fontWeight: 'bold',
             color: '#FFEB3B',
-            textShadow: '0px 2px 0px #FF6D00'
+            textShadow: '0px 3px 0px #FF6D00'
         }
         switch(code) {
             case 32:

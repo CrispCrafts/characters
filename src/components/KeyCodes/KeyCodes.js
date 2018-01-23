@@ -47,9 +47,8 @@ class KeyCodes extends Component {
     render() {
         if(!this.state.started) {
             return (
-                <div className="htmlCodes-container" style={{color: 'white', fontSize: '20px'}}>
-                    <div>{cool()}</div>
-                    <br/>
+                <div className="htmlCodes-container" style={{color: 'white', fontSize: '24px'}}>
+                    <div style={{paddingBottom: '24px'}}>{cool()}</div>
                     <div>Key Codes</div>
                     <span style={{color: 'rgba(255,255,255,0.5)'}}>Press any Key</span>
                 </div>

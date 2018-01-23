@@ -91,7 +91,7 @@ class SearchBar extends Component {
     const containerStyle = {
       color: this.state.isFocused ? '#212121' : '#E0E0E0',
       backgroundColor: this.state.isFocused ? 'white' : 'rgba(0,0,0,0.16)',
-      boxShadow: this.state.isFocused ? '0 1px 1px rgba(0,0,0,0.24)' : '',
+      boxShadow: this.state.isFocused ? '0 2px 1px rgba(0,0,0,0.24)' : '',
     };
 
     var inpt;
